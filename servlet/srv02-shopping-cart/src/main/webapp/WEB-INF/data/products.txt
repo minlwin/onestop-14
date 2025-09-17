@@ -1,0 +1,9 @@
+1	Potato Chips	Snacks	1000
+2	Sun Flower Seeds	Snacks	500
+3	Fish Chips	Snacks	1500
+4	Pucci Cake	Pan	1200
+5	Pillow Pan	Pan	1800
+6	Nest Coffee	Cold Drinks	2800
+7	Coke	Cold Drinks	1200
+8	TIger	Beer	3500
+9	Brother	Beer	3000
