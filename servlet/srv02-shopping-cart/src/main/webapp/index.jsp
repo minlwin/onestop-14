@@ -1,35 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>My Shop | Home</title>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="app" tagdir="/WEB-INF/tags" %>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<app:template title="Home">
+   <div class="row row-cols-3 g-4">
+       <c:forEach var="p" items="${products}">
+           <div class="col">
+               <div class="card">
+                   <div class="card-body">
+                       
+                       <h5 class="card-title">${p.name}</h5>
+                       
+                       <div class="d-flex justify-content-between">
+                           <span>${p.category}</span>
+                           <span>
+                               <fmt:formatNumber value="${p.price}" /> MMK
+                           </span>
+                       </div>
+                       
+                       <div class="pt-2 text-end">             
+                           <c:url value="/cart/add" var="addToCart">
+                               <c:param name="productId" value="${p.id}" />
+                               <c:param name="fromHome" value="true" />
+                           </c:url>
+                       
+                           <a href="${addToCart}" class="btn btn-outline-primary">
+                               <i class="bi-cart-plus"></i> Add To Cart
+                           </a>
+                       </div>
 
-</head>
-<body>
-
-	<nav class="navbar navbar-expand bg-primary navbar-dark">
-		<div class="container">
-			<a href="" class="navbar-brand">
-				<i class="bi-shop"></i> My Shop
-			</a>
-			
-			<form action="">
-				<div class="input-group">
-					<input type="text" placeholder="Search Keyword" class="form-control" />
-					<button class="input-group-text">
-						<i class="bi-search"></i>
-					</button>
-				</div>
-			</form>
-		</div>
-	</nav>
-
-
-</body>
-</html>
+                   </div>
+                   
+               </div>
+           </div>
+       </c:forEach>
+   </div>
+</app:template>

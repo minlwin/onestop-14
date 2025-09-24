@@ -15,6 +15,7 @@ import jakarta.servlet.annotation.WebListener;
 public class ProductLoaderListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent sce)  { 
+    	
     	var applicationScope = sce.getServletContext();
     	
     	// Read Data from products.txt file
@@ -33,7 +34,7 @@ public class ProductLoaderListener implements ServletContextListener {
     		var productManager = new ProductManager(products);
     		
     		applicationScope.setAttribute(ProductManager.KEY, productManager);
-    				
+    		applicationScope.setAttribute("products", productManager.search(null));
     		
     	} catch (Exception e) {
     		e.printStackTrace();

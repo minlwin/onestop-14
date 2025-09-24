@@ -15,7 +15,7 @@ public class ProductManager {
 
 	public List<Product> search(String keyword) {
 		return products.values().stream()
-				.filter(product -> null == keyword || 
+				.filter(product -> null == keyword || keyword.isBlank() ||
 							product.getName().toLowerCase().startsWith(keyword.toLowerCase()) ||
 							product.getCategory().toLowerCase().startsWith(keyword.toLowerCase()))
 				.toList();
