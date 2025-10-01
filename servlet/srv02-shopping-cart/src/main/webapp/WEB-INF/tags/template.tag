@@ -28,8 +28,8 @@
 			
 			<div class="d-flex">
 			
-				<c:if test="${cart ne null and cart.totalItems gt 0}">
-					<ul class="navbar-nav me-4">
+				<ul class="navbar-nav me-4">
+					<c:if test="${cart ne null and cart.totalItems gt 0}">
 						<li class="nav-item">
 							<c:url value="/cart" var="cartUrl" />
 							<a href="${cartUrl}" class="nav-link">
@@ -37,8 +37,35 @@
 								<span>${cart.totalItems}</span>
 							</a>
 						</li>
-					</ul>
-				</c:if>
+					</c:if>
+					
+					<c:if test="${loginUser ne null}">
+						<li class="nav-item">
+							<c:url value="/invoice" var="invoice" />
+							<a href="${invoice}" class="nav-link">
+								<i class="bi-list"></i>
+								<span>Invoices</span>
+							</a>
+						</li>
+						<li class="nav-item">
+							<c:url value="/signout" var="signout" />
+							<a href="${signout}" class="nav-link">
+								<i class="bi-lock"></i>
+								<span>Sign Out</span>
+							</a>
+						</li>
+					</c:if>
+					
+					<c:if test="${loginUser eq null}">
+						<li class="nav-item">
+							<c:url value="/signin" var="signin" />
+							<a href="${signin}" class="nav-link">
+								<i class="bi-unlock"></i>
+								<span>Sign In</span>
+							</a>
+						</li>
+					</c:if>
+				</ul>
 				
 				<c:url var="productUrl" value="/products" />
 				<form action="${productUrl}">
@@ -54,6 +81,13 @@
 	</nav>
 
 	<main class="container mt-4">
+		
+		<c:if test="${error ne null}">
+			<div class="alert alert-info mb-4">
+				${error}
+			</div>
+		</c:if>
+	
 		<jsp:doBody></jsp:doBody>
 	</main>
 </body>

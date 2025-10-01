@@ -65,9 +65,4 @@ public class ShoppingCartController extends HttpServlet {
 		getServletContext().getRequestDispatcher(view)
 			.forward(req, resp);
 	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// Check Out
-	}
 }
